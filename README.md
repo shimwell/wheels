@@ -12,5 +12,5 @@ For my use case I tend to install on Linux with Python 3.12 so I use these comma
 
 ```bash
 python -m pip install https://github.com/shimwell/wheels/raw/refs/heads/main/moab/moab-wheels-ubuntu-latest/moab-5.5.1-cp312-cp312-manylinux_2_28_x86_64.whl
-python -m pip install https://github.com/shimwell/wheels/raw/refs/heads/main/openmc/openmc-0.15.1.dev0-cp312-cp312-manylinux_2_28_x86_64.whl
+python -m pip install https://github.com/shimwell/wheels/raw/refs/heads/main/openmc/openmc-0.15.3-cp312-cp312-manylinux_2_28_x86_64.whl
 ```
