@@ -19,3 +19,7 @@ Linux with Python 3.11 commands
 python -m pip install https://github.com/shimwell/wheels/raw/refs/heads/main/moab/moab-wheels-ubuntu-latest/moab-5.5.1-cp311-cp311-manylinux_2_28_x86_64.whl
 python -m pip install https://github.com/shimwell/wheels/raw/refs/heads/main/openmc/openmc-0.15.3-cp311-cp311-manylinux_2_28_x86_64.whl
 ```
+
+If you would like to reproduce these from source that can be donw from [this branch with these commands](https://github.com/shimwell/openmc/pull/70#issue-3013447666)
+
+Feedback  welcome.
