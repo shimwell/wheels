@@ -15,6 +15,13 @@ Feedback welcome.
 
 ## Installing with pip from this custom index
 
+Optionally create a new virtual environment
+```
+sudo apt-get --yes install python3-venv
+python3 -m venv .new_env
+source .new_env/bin/activate
+```
+
 You can install `moab` or `openmc` directly from this repository using pip's `--extra-index-url` option, which works with the [GitHub Pages index](https://shimwell.github.io/wheels):
 
 ```
