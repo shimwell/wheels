@@ -12,30 +12,52 @@ There are lots of wheels for different versions of python and also operating sys
 
 Feedback welcome.
 
+## Prerequisites for installing
 
-## Installing with pip from this custom index
-
-Optionally create a new virtual environment
+Install Python and pip if you don't already have these installed.
+```
+sudo apt install python3 python3-pip.
+```
+Optionally create and activate a new virtual environment
 ```
 sudo apt-get --yes install python3-venv
 python3 -m venv .new_env
 source .new_env/bin/activate
 ```
 
+
+## Installing with pip from this custom index
+
 You can install `moab` or `openmc` directly from this repository using pip's `--extra-index-url` option, which works with the [GitHub Pages index](https://shimwell.github.io/wheels):
 
+To install `openmc`
 ```
-python -m pip install --extra-index-url https://shimwell.github.io/wheels moab
 python -m pip install --extra-index-url https://shimwell.github.io/wheels openmc
 ```
 
-This will automatically select the correct wheel for your Python version and platform, if available (please let us know if additional builds would be desirable).
+To install `moab`
+```
+python -m pip install --extra-index-url https://shimwell.github.io/wheels moab
+```
+
+Using the above pip install method will automatically select the correct wheel for your Python version and platform, if available (please let us know if additional builds would be desirable).
+
+## Installing from file
 
 If you know what wheel you want to install you can also use the direct link to the file, for example:
 
+Moab Python 3.12 on Linux
 ```
 python -m pip install https://shimwell.github.io/wheels/moab/moab-5.5.1-cp312-cp312-manylinux_2_28_x86_64.whl
+```
+OpenMC for Python 3.12 on Linux
+```
 python -m pip install https://shimwell.github.io/wheels/openmc/openmc-0.15.3-cp312-cp312-manylinux_2_28_x86_64.whl
 ```
 
-If you would like to reproduce OpenMC wheels from source that can be downloaded from [this branch with these commands](https://github.com/shimwell/openmc/pull/70#issue-3013447666) and MOAB wheels can be build using the ```python -m build``` command on the [develop branch](https://bitbucket.org/fathomteam/moab/branch/develop)
+## Reproduce the wheels
+
+You can build the OpenMC and MOAB wheels yourself from source code if you prefere.
+
+- OpenMC wheels can be built with [this branch and with these commands](https://github.com/shimwell/openmc/pull/70#issue-3013447666)
+- MOAB wheels can be built using the ```python -m build``` command on the [develop branch](https://bitbucket.org/fathomteam/moab/branch/develop)
