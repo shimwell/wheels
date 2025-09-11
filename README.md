@@ -16,7 +16,7 @@ Feedback welcome.
 
 Install Python and pip if you don't already have these installed.
 ```
-sudo apt install python3 python3-pip.
+sudo apt install python3 python3-pip
 ```
 Optionally create and activate a new virtual environment
 ```
