@@ -26,7 +26,7 @@ source .new_env/bin/activate
 ```
 
 
-## Installing with pip from this custom index
+## Installing with pip from this custom index (recommended)
 
 You can install `moab` or `openmc` directly from this repository using pip's `--extra-index-url` option, which works with the [GitHub Pages index](https://shimwell.github.io/wheels):
 
@@ -44,7 +44,7 @@ Using the above pip install method will automatically select the correct wheel f
 
 ## Installing from file
 
-If you know what wheel you want to install you can also use the direct link to the file, for example:
+If you know what version of Python you have and your opperating system then you can install a specific wheel using the direct link to the file, for example:
 
 Moab Python 3.12 on Linux
 ```
