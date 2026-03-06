@@ -2,14 +2,14 @@
 
 Unofficial wheels for OpenMC and MOAB packages.
 
-These particularly useful to have available as wheels for various workflows as a temporary measure until official wheels are distributed on PyPI.
+These are particularly useful to have available as wheels for various workflows as a temporary measure until official wheels are distributed on PyPI.
 
 This is particularly enabling for a few places where I need an easy install for these two packages (e.g. https://fusion-energy.github.io/neutronics-workshop/html/docs/install_pip.html).
 
 Longer term there are efforts for these packages to distribute wheels on PyPI but in the meantime this repository might be of use, I am also supporting these efforts (either directly of via developer sponsorship). These temporary wheels also serve as a test of the future PyPI wheels.
 
 There are two benefits of using this wheel over the Conda distribution of OpenMC
-- The wheel contains OpenMC compiled with Embree enabled DAGMC while the Conda package does not have the Embree acceleration. The inclusion of Embree can in the some cases accelerate the DAGMC CAD based simulations by but to 8 times faster.
+- The wheel contains OpenMC compiled with Embree enabled DAGMC while the Conda package does not have the Embree acceleration. The inclusion of Embree can in the some cases accelerate the DAGMC CAD based simulations by up to 8 times faster.
 - The wheel contains a recent version of the develop branch that contains improvements and bug fixes compared to the last stable release available on Conda
 
 Feedback welcome.
