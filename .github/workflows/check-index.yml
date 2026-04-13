@@ -1,0 +1,38 @@
+name: Check wheel indexes
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check all wheels are listed in index.html
+        run: |
+          exit_code=0
+          for folder in moab openmc; do
+            if [ ! -d "$folder" ]; then
+              continue
+            fi
+            for whl in "$folder"/*.whl; do
+              [ -e "$whl" ] || continue
+              filename=$(basename "$whl")
+              if ! grep -qF "\"$filename\"" "$folder/index.html"; then
+                echo "ERROR: $filename missing from $folder/index.html"
+                exit_code=1
+              fi
+            done
+            for href in $(grep -oP 'href="\K[^"]+\.whl' "$folder/index.html"); do
+              if [ ! -f "$folder/$href" ]; then
+                echo "ERROR: $folder/index.html references $href but file does not exist"
+                exit_code=1
+              fi
+            done
+          done
+          if [ $exit_code -eq 0 ]; then
+            echo "All wheels and indexes are in sync"
+          fi
+          exit $exit_code
