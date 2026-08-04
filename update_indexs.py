@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # List of folders to process
-folders = ["moab", "openmc"]
+folders = ["moab", "njoy2016", "openmc"]
 
 for folder in folders:
     folder_path = Path(folder)
