@@ -13,7 +13,7 @@ jobs:
       - name: Check all wheels are listed in index.html
         run: |
           exit_code=0
-          for folder in moab openmc; do
+          for folder in moab njoy2016 openmc; do
             if [ ! -d "$folder" ]; then
               continue
             fi
