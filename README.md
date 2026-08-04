@@ -73,7 +73,7 @@ python -m pip install https://shimwell.github.io/wheels/openmc/openmc-0.15.3-cp3
 ```
 NJOY2016 on Linux. Note that the NJOY2016 wheels are tagged `py3-none-<platform>` rather than per Python version, because the wheel ships a Fortran executable and no Python extension module, so one wheel per platform works on every supported Python
 ```
-python -m pip install https://shimwell.github.io/wheels/njoy2016/njoy2016-2016.79.post7-py3-none-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl
+python -m pip install https://shimwell.github.io/wheels/njoy2016/njoy2016-2016.79.post8-py3-none-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl
 ```
 
 ## Reproduce the wheels
