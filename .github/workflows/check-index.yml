@@ -13,8 +13,9 @@ jobs:
       - name: Check all wheels are listed in index.html
         run: |
           exit_code=0
-          for folder in moab njoy2016 openmc; do
-            if [ ! -d "$folder" ]; then
+          for folder in */; do
+            folder="${folder%/}"
+            if ! compgen -G "$folder/*.whl" > /dev/null; then
               continue
             fi
             for whl in "$folder"/*.whl; do
