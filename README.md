@@ -1,6 +1,6 @@
 # wheels storage repository
 
-Unofficial wheels for OpenMC, MOAB and NJOY2016 packages.
+Unofficial wheels for OpenMC, MOAB, NJOY2016 and FEniCSx (DOLFINx, Basix, FFCx, UFL, with PETSc) packages.
 
 These are particularly useful to have available as wheels for various workflows as a temporary measure until official wheels are distributed on PyPI.
 
@@ -58,6 +58,25 @@ njoy.executable()   # path to the bundled njoy binary
 ```
 
 Using the above pip install method will automatically select the correct wheel for your Python version and platform, if available (please let us know if additional builds would be desirable).
+
+## Installing FEniCSx with PETSc
+
+DOLFINx needs PETSc, which has historically been the hard part of a pip install. These wheels let the whole stack install without compiling anything
+
+```
+python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels mpich fenics-dolfinx[petsc4py] petsc
+```
+
+`--pre` is required. These are development versions, and without it pip skips them and falls back to building PETSc from the source distribution on PyPI.
+
+`mpich` comes from PyPI and supplies the MPI runtime. The PETSc wheels here are built against it, so it needs to be the MPI in use.
+
+Linux x86_64 and aarch64, Python 3.12, 3.13 and 3.14. Verified by installing into a clean `python:3.13` container and running the DOLFINx test suite under `mpiexec -n 2`, 2381 passed. macOS is not published yet.
+
+Some things worth knowing about these PETSc builds
+- They are built Fortran free with SuperLU_DIST rather than MUMPS as the parallel direct solver, because the MPI wheels on PyPI ship no Fortran bindings.
+- They are built from PETSc `main` rather than a release, to pick up [petsc!9573](https://gitlab.com/petsc/petsc/-/merge_requests/9573), without which a prebuilt petsc4py wheel records the `PETSC_DIR` of the machine that built it and DOLFINx cannot find `libpetsc`. That fix is in the 3.26 milestone, so these will be rebuilt against the release once it lands.
+- Intel MPI will not work with them. PETSc built against MPICH references `MPIX_Irecv_enqueue`, and Intel MPI is MPICH ABI compatible but does not implement the enqueue extensions.
 
 ## Installing from file
 
