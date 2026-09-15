@@ -71,7 +71,18 @@ python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels 
 
 `mpich` comes from PyPI and supplies the MPI runtime. The PETSc wheels here are built against it, so it needs to be the MPI in use.
 
-Linux x86_64 and aarch64, Python 3.12, 3.13 and 3.14. `scifem` is here too, which means [FESTIM](https://github.com/festim-dev/FESTIM) can be installed from wheels as well. Verified by installing into a clean `python:3.13` container and running the DOLFINx test suite under `mpiexec -n 2`, 2381 passed. macOS is not published yet.
+Linux x86_64 and aarch64, Python 3.12, 3.13 and 3.14. DOLFINx is built with MPI-enabled ADIOS2, including support for `dolfinx.io.VTXWriter`. Verified by installing into a clean `python:3.13` container and running the DOLFINx test suite under `mpiexec -n 2`, 2381 passed. macOS is not published yet.
+
+`scifem` is here too, so stable [FESTIM](https://github.com/festim-dev/FESTIM) can be installed entirely from wheels. Install the prerelease FEniCSx stack first, then stable FESTIM separately so `--pre` does not select a FESTIM release candidate
+
+```
+python -m pip install mpich
+python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels \
+	fenics-dolfinx[petsc4py] petsc scifem==0.22.1
+python -m pip install festim==2.1
+```
+
+This was tested in a clean Python 3.12 container with a steady-state FESTIM solve and VTX output.
 
 Some things worth knowing about these PETSc builds
 - They are built Fortran free with SuperLU_DIST rather than MUMPS as the parallel direct solver, because the MPI wheels on PyPI ship no Fortran bindings.
