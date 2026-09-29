@@ -64,10 +64,13 @@ Using the above pip install method will automatically select the correct wheel f
 DOLFINx needs PETSc, which has historically been the hard part of a pip install. These wheels let the whole stack install without compiling anything
 
 ```
-python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels mpich fenics-dolfinx[petsc4py] petsc
+python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels mpich fenics-dolfinx[petsc4py] \
+	petsc==3.26.0.dev0 petsc4py==3.26.0.dev0
 ```
 
-`--pre` is required. These are development versions, and without it pip skips them and falls back to building PETSc from the source distribution on PyPI.
+`--pre` is required. These are development versions, and without it pip skips them.
+
+The `petsc` and `petsc4py` pins are required too. PETSc 3.26.0 is now on PyPI as a source distribution only, and pip ranks it above the `3.26.0.dev0` wheels here, so without the pins it builds PETSc from source.
 
 `mpich` comes from PyPI and supplies the MPI runtime. The PETSc wheels here are built against it, so it needs to be the MPI in use.
 
@@ -78,7 +81,7 @@ Linux x86_64 and aarch64, Python 3.12, 3.13 and 3.14. DOLFINx is built with MPI-
 ```
 python -m pip install mpich
 python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels \
-	fenics-dolfinx[petsc4py] petsc scifem==0.22.1
+	fenics-dolfinx[petsc4py] petsc==3.26.0.dev0 petsc4py==3.26.0.dev0 scifem==0.22.1
 python -m pip install festim==2.1
 ```
 
@@ -86,7 +89,7 @@ This was tested in a clean Python 3.12 container with a steady-state FESTIM solv
 
 Some things worth knowing about these PETSc builds
 - They are built Fortran free with SuperLU_DIST rather than MUMPS as the parallel direct solver, because the MPI wheels on PyPI ship no Fortran bindings.
-- They are built from PETSc `main` rather than a release, to pick up [petsc!9573](https://gitlab.com/petsc/petsc/-/merge_requests/9573), without which a prebuilt petsc4py wheel records the `PETSC_DIR` of the machine that built it and DOLFINx cannot find `libpetsc`. That fix is in the 3.26 milestone, so these will be rebuilt against the release once it lands.
+- They are built from PETSc `main` rather than a release, to pick up [petsc!9573](https://gitlab.com/petsc/petsc/-/merge_requests/9573), without which a prebuilt petsc4py wheel records the `PETSC_DIR` of the machine that built it and DOLFINx cannot find `libpetsc`. That fix is in the 3.26 milestone, so these will be rebuilt against 3.26.0, after which the pins above can be dropped.
 - Intel MPI will not work with them. PETSc built against MPICH references `MPIX_Irecv_enqueue`, and Intel MPI is MPICH ABI compatible but does not implement the enqueue extensions.
 
 ## Installing from file
