@@ -64,10 +64,10 @@ Using the above pip install method will automatically select the correct wheel f
 DOLFINx needs PETSc, which has historically been the hard part of a pip install. These wheels let the whole stack install without compiling anything
 
 ```
-python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels mpich fenics-dolfinx[petsc4py]
+python -m pip install --extra-index-url https://shimwell.github.io/wheels mpich fenics-dolfinx[petsc4py]
 ```
 
-`--pre` is required. DOLFINx, Basix, FFCx and UFL are development versions, and without it pip skips them.
+`--pre` is not needed. DOLFINx, Basix, FFCx and UFL are development versions, but pip accepts them because no final release satisfies the requirements.
 
 `mpich` comes from PyPI and supplies the MPI runtime. The PETSc wheels here are built against it, so it needs to be the MPI in use.
 
@@ -75,11 +75,11 @@ python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels 
 
 Linux x86_64 and aarch64, Python 3.12, 3.13 and 3.14. DOLFINx is built with MPI-enabled ADIOS2, including support for `dolfinx.io.VTXWriter`. Verified by installing into a clean `python:3.13` container and running the DOLFINx test suite under `mpiexec -n 2`, 2511 passed. macOS is not published yet.
 
-`scifem` is here too, so stable [FESTIM](https://github.com/festim-dev/FESTIM) can be installed entirely from wheels. Install the prerelease FEniCSx stack first, then stable FESTIM separately so `--pre` does not select a FESTIM release candidate
+`scifem` is here too, so stable [FESTIM](https://github.com/festim-dev/FESTIM) can be installed entirely from wheels. Install the FEniCSx stack first, then FESTIM
 
 ```
 python -m pip install mpich
-python -m pip install --pre --extra-index-url https://shimwell.github.io/wheels \
+python -m pip install --extra-index-url https://shimwell.github.io/wheels \
 	fenics-dolfinx[petsc4py] scifem==0.26.0
 python -m pip install festim==2.1
 ```
