@@ -100,7 +100,7 @@ python -m pip install https://shimwell.github.io/wheels/moab/moab-5.5.1-cp312-cp
 ```
 OpenMC for Python 3.12 on Linux
 ```
-python -m pip install https://shimwell.github.io/wheels/openmc/openmc-0.15.3-cp312-cp312-manylinux_2_28_x86_64.whl
+python -m pip install https://shimwell.github.io/wheels/openmc/openmc-0.16.1.dev0-cp312-cp312-manylinux_2_28_x86_64.whl
 ```
 NJOY2016 on Linux. Note that the NJOY2016 wheels are tagged `py3-none-<platform>` rather than per Python version, because the wheel ships a Fortran executable and no Python extension module, so one wheel per platform works on every supported Python
 ```
