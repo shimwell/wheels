@@ -37,6 +37,16 @@ To install `openmc`
 python -m pip install --extra-index-url https://shimwell.github.io/wheels openmc
 ```
 
+### OpenMC with hard to merge extras
+
+A second OpenMC build lives in its own index at https://shimwell.github.io/wheels/openmc-extras. It is the develop branch plus [branches that are not merged upstream yet](https://github.com/shimwell/openmc/pull/145), currently the wheel packaging branch and staged multi-model D1S.
+
+The package is still called `openmc`, so anything that requires `openmc` is satisfied by it. The version carries a `+extras` label, for example `0.16.1.dev0+extras`, which keeps it apart from the plain wheels.
+```
+python -m pip install --extra-index-url https://shimwell.github.io/wheels/openmc-extras openmc==0.16.1.dev0+extras
+```
+Pin the `+extras` version, as above or in a lock file. If both indexes are configured without a pin, the highest version wins, so a newer plain build from the main index could be picked instead.
+
 To install `moab`
 ```
 python -m pip install --extra-index-url https://shimwell.github.io/wheels moab

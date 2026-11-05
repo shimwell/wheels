@@ -13,7 +13,9 @@ jobs:
       - name: Check all wheels are listed in index.html
         run: |
           exit_code=0
-          for folder in */; do
+          # Package folders in the main index and in nested indexes such as
+          # openmc-extras/openmc.
+          for folder in */ */*/; do
             folder="${folder%/}"
             if ! compgen -G "$folder/*.whl" > /dev/null; then
               continue
